@@ -15,6 +15,7 @@ const router = createRouter({
                     params: to.query
                 }).then((res)=>{
                     let data = res.data.data
+                    account.accountId = data.account_id
                     localStorage.setItem('42_token',data.access_token)
                     localStorage.setItem('42_IS_LOGGED_IN',true)
                     localStorage.setItem('42_account_id',data.account_id)

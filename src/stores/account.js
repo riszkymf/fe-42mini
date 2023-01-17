@@ -7,7 +7,7 @@ import axios from 'axios';
 export const useAccountStore = defineStore("account",{
     state: ()=>({
             loggedIn: localStorage.getItem('42_IS_LOGGED_IN'),
-            accountId: localStorage.getItem('42_account_id')
+            accountId: false
     })
     ,
     actions: {    
@@ -31,10 +31,10 @@ export const useAccountStore = defineStore("account",{
                         Authorization: "Bearer " + this.getToken()
                     }
                 })
+                this.cleanupStorage()
                 return response.data
             } catch (error) {
                 alert(error.message)
-                console.error(error.message)
                 return error
             }
         },
